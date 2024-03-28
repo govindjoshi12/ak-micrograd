@@ -234,8 +234,8 @@ class Value:
     def Sign(value: 'Value'):
         return value.sign()
 
-    @staticmethod
     # useful for implementing linear regression
+    @staticmethod
     def Identity(value: 'Value'):
         return value
 
