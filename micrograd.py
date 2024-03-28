@@ -204,6 +204,19 @@ class Value:
         val = self.processOperand(val)
         out = (val - self) ** 2
         return out
+
+    def sign(self):
+        outVal = 1 if self.data > 0 else 0
+        out = Value(outVal, (self,), 'sign')
+
+        # don't use this function for gradient descent 
+        # because it has a 0 derivative. 
+        def _backward():
+            self.grad = 0
+        out._backward = _backward
+
+        return out
+
     
     # --- static functions for non-linearities ---
     # my convention: capitalize first letter for 
@@ -216,6 +229,10 @@ class Value:
     @staticmethod
     def Relu(value: 'Value'):
         return value.relu()
+    
+    @staticmethod
+    def Sign(value: 'Value'):
+        return value.sign()
 
     @staticmethod
     # useful for implementing linear regression

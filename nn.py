@@ -99,7 +99,7 @@ class MLP(Module):
 # MLP wrapper with 1 output layer of 1 dimension
 class LinearRegressor(MLP):
 
-    def __init__(self, inputDim, activation=Value.relu):
+    def __init__(self, inputDim, activation=Value.Identity):
         # super(): returns a delegate object to parent class
         super().__init__(inputDim, [1], activation)
     
